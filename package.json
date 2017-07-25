@@ -1,0 +1,33 @@
+{
+  "name": "upload-test-server",
+  "version": "1.0.0",
+  "description": "Small node server with a CLI to test file uploads.",
+  "main": "index.js",
+  "bin": {
+    "upload-test-server": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pkaske/upload-test-server.git"
+  },
+  "keywords": [
+    "node",
+    "hapi",
+    "file",
+    "upload"
+  ],
+  "author": "Peter Kaske",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pkaske/upload-test-server/issues"
+  },
+  "homepage": "https://github.com/pkaske/upload-test-server#readme",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "fs-extra": "^4.0.0",
+    "hapi": "^16.5.0"
+  }
+}
