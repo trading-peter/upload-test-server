@@ -5,7 +5,7 @@ Powered by [hapi](https://hapijs.com).
 
 ## Why?
 
-I search for a simple and easy to setup server that does just one thing.  
+I searched for a simple and easy server that does just one thing:  
 Letting me test file uploads with front end gui stuff I work on.
 
 ## Install
