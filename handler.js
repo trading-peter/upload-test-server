@@ -29,6 +29,9 @@ module.exports = function(options) {
             info.meta = result.meta;
           }
         }
+
+        info.size = Fs.statSync(destPath).size;
+
         console.log(`Saved file: "${destPath}"`);
         return reply(info);
       });
