@@ -4,10 +4,7 @@
 
 const Program = require('commander');
 const Hapi = require('hapi');
-const Fs = require('fs');
-const Boom = require('boom');
 const Path = require('path');
-const FsExtra = require('fs-extra');
 
 Program.version(require('./package.json').version).usage('command');
 
@@ -19,13 +16,15 @@ Program
   .option('-s, --store [path]', 'Folder were uploads are stored. Defaults to cwd.')
   .option('-u, --uploadRoute [path]', 'Path of the upload route. Defaults to /upload.')
   .option('-m, --maxKb [kb]', 'Maximum file size in kilobytes. Defaults to 5120 KB.')
+  .option('--image-processing [config file]', 'Process uploaded images. Supply path to config file for processing.')
   .action(function(opt) {
     const options = {
       host: opt.host || 'localhost',
       port: parseInt(opt.port, 10) || 8989,
       store: opt.store || process.cwd(),
       uploadRoute: opt.uploadRoute || '/upload',
-      maxKb: opt.maxKb || 5120
+      maxKb: opt.maxKb || 5120,
+      imageProcessing: opt.imageProcessing || null
     };
 
     const server = new Hapi.Server();
@@ -34,25 +33,7 @@ Program
     server.route({
       method: 'POST',
       path: options.uploadRoute,
-      handler: function(request, reply) {
-        try {
-          FsExtra.mkdirsSync(options.store);
-          const keys = Object.keys(request.payload);
-          const fileObj = request.payload[keys[0]];
-          const destPath = Path.resolve(Path.join(options.store, fileObj.hapi.filename));
-          const file = Fs.createWriteStream(destPath);
-          
-          file.on('finish', function () {
-            console.log(`Saved file: "${destPath}"`);
-            return reply({ filename: fileObj.hapi.filename, path: destPath });
-          });
-          
-          fileObj.pipe(file);
-        } catch (err) {
-          console.log(err);
-          return reply(Boom.badRequest(err));
-        }
-      },
+      handler: require('./handler')(options),
       config: {
         cors: {
           origin: [ '*' ],

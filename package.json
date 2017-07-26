@@ -1,6 +1,6 @@
 {
   "name": "upload-test-server",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Small node server with a CLI to test file uploads.",
   "main": "index.js",
   "bin": {
@@ -28,6 +28,9 @@
   "dependencies": {
     "commander": "^2.11.0",
     "fs-extra": "^4.0.0",
-    "hapi": "^16.5.0"
+    "hapi": "^16.5.0",
+    "joi": "^10.6.0",
+    "mmmagic": "^0.4.5",
+    "sharp": "^0.18.2"
   }
 }
