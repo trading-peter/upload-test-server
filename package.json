@@ -1,6 +1,6 @@
 {
   "name": "upload-test-server",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Small node server with a CLI to test file uploads.",
   "main": "index.js",
   "bin": {
