@@ -106,7 +106,7 @@ An array pixel values for maximum height. The server creates a subdirectory for 
 }
 ```
 
-The server creates a the following folder structure and files for each uploaded image:
+The server creates the following folder structure and files for each uploaded image:
 
 ```sh
 /upload/my-image.jpg # Full size image
